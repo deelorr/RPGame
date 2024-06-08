@@ -1,0 +1,62 @@
+/* Grid.css */
+.mapContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 10px;
+    background-color: rgb(226, 212, 194);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border: rgba(0, 3, 153, 0.808) 3px outset;
+    text-align: center;
+}
+
+.map {
+    padding: 5px;
+    background-color: rgb(226, 212, 194);
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 5px;
+}
+
+.player {
+    background-color: yellow;
+}
+
+.armor {
+    background-color: orange;
+}
+
+.weapon {
+    background-color: green;
+}
+
+.item {
+    background-color: blue;
+}
+
+.enemy {
+    background-color: red;
+}
+
+.plainTile {
+    background-color: rgb(172, 155, 133);
+}
+
+.store {
+    background-color: silver;
+}
+
+.npc {
+    background-color: rgb(255, 255, 255);
+}
+
+.porter {
+    background-color: rgb(59, 155, 179);
+}
