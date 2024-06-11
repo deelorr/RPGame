@@ -1,26 +1,21 @@
-import { useCallback, useEffect } from 'react';
-import Enemy from '../../classes/characters/Enemy';
+import { useContext, useCallback, useEffect } from 'react';
+import Enemy from '../../classes/characters/enemies/Enemy';
 import Item from '../../classes/items/Item';
+import Battle from '../../classes/Battle';
 import { updateLog } from '../GameUtils/GameUtils';
 import Porter from '../../classes/characters/npc/Porter';
 import defeatMatt from '../../classes/quests/Act 1/defeatMatt';
+import GameContext from '../../contexts/GameContext';
+import PlayerContext from '../../contexts/PlayerContext';
+import InventoryContext from '../../contexts/InventoryContext';
 
-const useMovement = (
-    inBattle, 
-    playerPosition, 
-    map, 
-    setPlayerPosition, 
-    setInBattle, 
-    setEnemy, 
-    player, 
-    setInventory, 
-    setLog, 
-    setStoreOpen, 
-    storeOpen
-) => {
+const useMovement = () => {
+    const { setEnemy, inBattle, setInBattle, map, setLog, storeOpen, setStoreOpen } = useContext(GameContext);
+    const { player, playerPosition, setPlayerPosition } = useContext(PlayerContext);
+    const { setInventory } = useContext(InventoryContext);
 
     const handleItemEncounter = useCallback((item, x, y) => {
-        updateLog(player.addItem(item), setLog);
+        updateLog(player.receiveItem(item), setLog);
         setInventory([...player.inventory]);
         map.removeItem(x, y);
     }, [player, setLog, setInventory, map]);
@@ -53,21 +48,19 @@ const useMovement = (
                     if (tileObject.name === 'Matt') {
                         defeatMatt.completeObjective(0);
                     }
+                    updateLog(tileObject.talk(), setLog);
+                    updateLog(tileObject.showWeakness(), setLog);
                     setEnemy(tileObject);
                     setInBattle(true);
-                    
-                    // Uncomment the following else block to handle other enemies
-                    // else {
-                    //     handleEnemyEncounter(tileObject);
-                    // }
+                    const battle = new Battle(player, tileObject);
+                    battle.start();
                 }
             }
         }
-    }, [inBattle, player, playerPosition, map, setPlayerPosition, setStoreOpen, setLog, handleItemEncounter]);
+    }, [inBattle, player, setEnemy, setInBattle, playerPosition, map, setPlayerPosition, setStoreOpen, setLog, handleItemEncounter]);
 
     const handleKeyDown = useCallback((event) => {
         if (inBattle || storeOpen) return;
-
         switch (event.key) {
             case 'ArrowUp':
             case 'w':

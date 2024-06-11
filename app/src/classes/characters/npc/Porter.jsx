@@ -1,17 +1,11 @@
 import NPC from './NPC';
 
 class Porter extends NPC {
-    constructor(name, hp, dmg) {
+    constructor(
+        name='Porter', 
+        hp=100, 
+        dmg=10) {
         super(name, hp, dmg);
-    }
-
-    talk() {
-        return `Hello, my name is ${this.name}. Please defeat Matt!`;
-    }
-
-    giveQuest(quest, player) {
-        player.quests.push(quest);
-        return `${this.name} gives you the quest: ${quest.name}`;
     }
 }
 

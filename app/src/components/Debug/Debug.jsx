@@ -29,7 +29,7 @@ Debug.propTypes = {
     equippedArmor: PropTypes.shape({
       name: PropTypes.string,
     }),
-    addItem: PropTypes.func.isRequired,
+    // addItem: PropTypes.func.isRequired,
     useItem: PropTypes.func.isRequired,
     attack: PropTypes.func.isRequired,
     takeDmg: PropTypes.func.isRequired,

@@ -9,21 +9,13 @@ const initialPlayerPosition = { x: 0, y: 0 };
 
 const PlayerProvider = ({ children }) => {
     const [player, setPlayer] = useState(initialPlayer);
-    const [enemy, setEnemy] = useState(null);
     const [playerPosition, setPlayerPosition] = useState(initialPlayerPosition);
-
-    const updatePlayerPosition = (newPosition) => {
-        setPlayerPosition(newPosition);
-    };
 
     const values = {
         player,
         setPlayer,
-        enemy,
-        setEnemy,
         playerPosition,
-        setPlayerPosition,
-        updatePlayerPosition
+        setPlayerPosition
     };
 
     return (

@@ -1,9 +1,17 @@
+import { useContext, useCallback } from 'react';
 import { updateLog, removeEnemyFromMap } from '../GameUtils/GameUtils';
 import Weapon from '../../classes/items/weapons/Weapon';
 import Armor from '../../classes/items/armor/Armor';
+import PlayerContext from '../../contexts/PlayerContext';
+import InventoryContext from '../../contexts/InventoryContext';
+import GameContext from '../../contexts/GameContext';
 
-const useActions = (player, enemy, inventory, inBattle, setInBattle, setLog, setInventory, map, setEnemy) => {
-    const handleBattleAction = (action) => {
+const useActions = () => {
+    const { player } = useContext(PlayerContext);
+    const { setInventory } = useContext(InventoryContext);
+    const { enemy, setEnemy, inBattle, setInBattle, setLog, map } = useContext(GameContext);
+
+    const handleBattleAction = useCallback((action) => {
         updateLog(action, setLog);
         if (enemy.hp <= 0) {
             setInBattle(false);
@@ -16,9 +24,9 @@ const useActions = (player, enemy, inventory, inBattle, setInBattle, setLog, set
                 setInBattle(false);
             }
         }
-    };
+    }, [enemy, map, player, setEnemy, setInBattle, setLog]);
 
-    const handleItemAction = (item) => {
+    const handleItemAction = useCallback((item) => {
         if (item.isConsumable) {
             updateLog(player.useItem(item.name, player), setLog);
             setInventory([...player.inventory]);
@@ -29,22 +37,14 @@ const useActions = (player, enemy, inventory, inBattle, setInBattle, setLog, set
             updateLog(`Equipping armor: ${item.name}`, setLog);
             player.equipArmor(item);
         }
-    };
+    }, [player, setInventory, setLog]);
 
-    const handleAction = (actionType, item) => {
+    const handleAction = useCallback((actionType, item) => {
         if (!inBattle) {
-            switch (actionType) {
-                case 'attack':
-                    updateLog("No enemy to attack!", setLog);
-                    break;
-                case 'special':
-                    updateLog("No enemy to use special on!", setLog);
-                    break;
-                case 'useItem':
-                    handleItemAction(item);
-                    break;
-                default:
-                    break;
+            if (actionType === 'useItem') {
+                handleItemAction(item);
+            } else {
+                updateLog(`No enemy to ${actionType}!`, setLog);
             }
             return;
         }
@@ -62,7 +62,7 @@ const useActions = (player, enemy, inventory, inBattle, setInBattle, setLog, set
             default:
                 break;
         }
-    };
+    }, [inBattle, handleBattleAction, handleItemAction, player, enemy, setLog]);
 
     return handleAction;
 };

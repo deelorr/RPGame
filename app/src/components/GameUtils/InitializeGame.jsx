@@ -1,6 +1,6 @@
 import Item from '../../classes/items/Item';
 import Porter from '../../classes/characters/npc/Porter';
-import Enemy from '../../classes/characters/Enemy';
+import Enemy from '../../classes/characters/enemies/Enemy';
 import { updateLog, randomInt } from '../GameUtils/GameUtils';
 
 export const initializeGame = (map, setLog) => {

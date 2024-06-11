@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Weapon from '../../classes/items/weapons/Weapon';
 import Armor from '../../classes/items/armor/Armor';
 import Item from '../../classes/items/Item';
-import Enemy from '../../classes/characters/Enemy';
+import Enemy from '../../classes/characters/enemies/Enemy';
 import NPC from '../../classes/characters/npc/NPC';
 import Porter from '../../classes/characters/npc/Porter';
 import './Grid.css';

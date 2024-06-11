@@ -11,6 +11,7 @@ export const GameProvider = ({ children }) => {
     const [map, setMap] = useState(new Map(21, 15));
     const [log, setLog] = useState([]);
     const [inBattle, setInBattle] = useState(false);
+    const [battle, setBattle] = useState(null);
     const [storeOpen, setStoreOpen] = useState(false);
     const [enemy, setEnemy] = useState(null);
 
@@ -21,6 +22,11 @@ export const GameProvider = ({ children }) => {
         new Armor("Shield", null, 20, 50, 1)
     ]);
 
+    const updateLog = (message, setLog) => {
+        setLog(prevLog => [...prevLog, message]);
+    }
+;
+
     const values = {
         map,
         setMap,
@@ -28,12 +34,15 @@ export const GameProvider = ({ children }) => {
         setLog,
         inBattle,
         setInBattle,
+        battle,
+        setBattle,
         storeOpen,
         setStoreOpen,
         enemy,
         setEnemy,
         storeInventory,
-        setStoreInventory
+        setStoreInventory,
+        updateLog
     };
 
     return (

@@ -1,6 +1,4 @@
 import Character from './Character';
-import Weapon from '../items/weapons/Weapon';
-import Armor from '../items/armor/Armor';
 import Quest from '../quests/Quest';
 
 class Player extends Character {
@@ -13,17 +11,6 @@ class Player extends Character {
         this.equippedArmor = null;
         this.inventory = [];
         this.quests = [];
-    }
-
-    addItem(item) {
-        if (item instanceof Weapon) {
-            return this.equipWeapon(item);
-        } else if (item instanceof Armor) {
-            return this.equipArmor(item);
-        } else {
-            this.inventory.push(item);
-            return `${item.name} added to inventory.`;
-        }
     }
 
     equipWeapon(weapon) {
