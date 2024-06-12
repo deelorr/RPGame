@@ -17,7 +17,6 @@ const Debug = ({ player, playerPosition, addGold }) => {
     console.log('Generating enemy at position:', { x, y });
     console.log('Enemy details:', enemy);
 
-    // Ensure map has a placeObject method and it works correctly
     if (map.placeObject) {
       map.placeObject(enemy, x, y);
       console.log('Enemy placed on the map:', map.grid[y][x]);
@@ -57,7 +56,6 @@ Debug.propTypes = {
     equippedArmor: PropTypes.shape({
       name: PropTypes.string,
     }),
-    // addItem: PropTypes.func.isRequired,
     useItem: PropTypes.func.isRequired,
     attack: PropTypes.func.isRequired,
     takeDmg: PropTypes.func.isRequired,

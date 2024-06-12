@@ -31,11 +31,10 @@ const Inventory = ({ player, inventory, handleAction }) => {
                 <h2>Inventory:</h2>
             {filteredInventory.length === 0 ? (
                 <div className='invBox'>
-                    <p>Empty</p>
+                    <p>No Items</p>
                 </div>
             ) : (
                 <div className='invBox'>
-                        <ul>
                             {filteredInventory.map(({ item, count }, index) => (
                                 <li className='invList' key={index}>
                                     {item.name}{count > 1 ? ` x${count}` : ''}
@@ -48,7 +47,6 @@ const Inventory = ({ player, inventory, handleAction }) => {
                                     )}
                                 </li>
                             ))}
-                        </ul>
                 </div>
             )}
             </div>

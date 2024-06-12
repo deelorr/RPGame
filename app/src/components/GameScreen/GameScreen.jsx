@@ -4,7 +4,6 @@ import useMovement from '../GameUtils/useMovement';
 import PlayerContext from '../../contexts/PlayerContext';
 import InventoryContext from '../../contexts/InventoryContext';
 import GameContext from '../../contexts/GameContext';
-import StatBox from '../StatBox/StatBox';
 import LogBox from '../LogBox/LogBox';
 import Inventory from '../Inventory/Inventory';
 import Store from '../Store/Store';
@@ -30,8 +29,7 @@ export default function GameScreen() {
     const { 
         map, 
         log, 
-        setLog, 
-        inBattle, 
+        setLog,
         setInBattle, 
         storeOpen, 
         setStoreOpen } = useContext(GameContext);
@@ -46,46 +44,34 @@ export default function GameScreen() {
 
     useEffect(() => {
         initializeGame(map, setLog);
-    }, []); // Empty dependency array ensures this runs only once when the component mounts
+    }, [map, setLog]);
 
     return (
         <>
             <div className='gameScreen'>
                 {!storeOpen && (
                     <div className='firstDiv'>
-                        <StatBox 
-                            player={player} 
-                            enemy={enemy} 
-                            inBattle={inBattle} 
-                        />
-                        <BattleScreen 
-                            player={player} 
-                            enemy={enemy} 
-                            onEndBattle={handleEndBattle} 
-                        />  
                         <Inventory 
                             player={player} 
                             inventory={inventory} 
                             handleAction={handleAction} 
                         />
+                        <div className='placeholder'>
+                            <h2>Placeholder</h2>
+                        </div>
                     </div>
                 )}
                 {storeOpen && (
                     <div className='firstDiv'>
-                        <StatBox 
+                        <Inventory 
                             player={player} 
-                            enemy={enemy} 
-                            inBattle={inBattle} 
+                            inventory={inventory} 
+                            handleAction={handleAction}
                         />
                         <Store 
                             storeInventory={storeInventory} 
                             handleBuyItem={(item) => handleBuyItem(item, player, updateLog, setInventory, setStoreInventory, setLog)} 
                             closeStore={() => closeStore(setStoreOpen, updateLog, setLog)} 
-                        /> 
-                        <Inventory 
-                            player={player} 
-                            inventory={inventory} 
-                            handleAction={handleAction}
                         />
                     </div>
                 )}
@@ -94,6 +80,11 @@ export default function GameScreen() {
                         map={map} 
                         playerPosition={playerPosition} 
                     />
+                    <BattleScreen 
+                            player={player} 
+                            enemy={enemy} 
+                            onEndBattle={handleEndBattle} 
+                    />  
                     <Debug 
                         player={player} 
                         playerPosition={playerPosition} 

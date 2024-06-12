@@ -7,7 +7,7 @@ import Armor from '../classes/items/armor/Armor';
 
 const GameContext = createContext();
 
-const initialMap = new Map(10, 10);
+const initialMap = new Map(12, 12);
 
 export const GameProvider = ({ children }) => {
     const [map, setMap] = useState(initialMap);
@@ -20,7 +20,6 @@ export const GameProvider = ({ children }) => {
 
     const toggleRenderTrigger = () => { setRenderTrigger(!renderTrigger); };
 
-    // Ensure storeInventory items have a quantity property
     const [storeInventory, setStoreInventory] = useState([
         new Item("Potion", (target) => { target.hp += 50; }, true, 10, 2),
         new Weapon("Sword", null, 15, 50, 1),

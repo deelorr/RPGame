@@ -14,11 +14,11 @@
 }
 
 .firstDiv {
-    width: 30%;
+    width: 25%;
 }
 
 .middleDiv {
-    width: 65%;
+    width: 50%;
 }
 
 .thirdDiv {
@@ -28,69 +28,18 @@
 .firstDiv, .middleDiv, .thirdDiv {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     margin: 10px;
 }
 
-.middleDiv h2 {
+.placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: rgba(0, 3, 153, 0.808) 3px outset;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 2px;
+    background-color: rgb(226, 212, 194);
     text-align: center;
-    font-size: 2em;
-    margin: 5px;
+    height: 30%;
 }
-/* 
-@media (max-width: 1024px) {
-    .gameScreen {
-        flex-direction: column;
-        height: auto;
-        width: 100%;
-    }
-
-    .firstDiv, .middleDiv, .thirdDiv {
-        margin: 10px 0;
-    }
-
-    .middleDiv {
-        order: 1;
-    }
-
-    .firstDiv {
-        order: 2;
-    }
-
-    .thirdDiv {
-        order: 3;
-    }
-}
-
-@media (max-width: 768px) {
-    .gameScreen {
-        height: auto;
-        padding: 10px;
-    }
-
-    .middleDiv {
-        margin: 10px 0;
-    }
-
-    .firstDiv, .thirdDiv {
-        margin: 5px 0;
-    }
-
-    .middleDiv h2 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 480px) {
-    .firstDiv, .middleDiv, .thirdDiv {
-        margin: 5px 0;
-    }
-
-    .middleDiv h2 {
-        font-size: 1.2em;
-    }
-
-    .gameScreen {
-        padding: 5px;
-    }
-} */

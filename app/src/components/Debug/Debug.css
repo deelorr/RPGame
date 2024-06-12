@@ -3,8 +3,7 @@
     flex-direction: column;
     position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.384);
     border-radius: 5px;
@@ -20,7 +19,7 @@
 
 .debug-buttons {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .debug-stats {

@@ -1,6 +1,6 @@
 import Item from '../../classes/items/Item';
 import Porter from '../../classes/characters/npc/Porter';
-import Enemy from '../../classes/characters/enemies/Enemy';
+import Matt from '../../classes/characters/enemies/Matt';
 import { updateLog, randomInt } from '../GameUtils/GameUtils';
 
 export const initializeGame = (map, setLog) => {
@@ -12,7 +12,7 @@ export const initializeGame = (map, setLog) => {
         target.dmg += 50;
     }, true, 10, 1);
 
-    map.placeObject(new Enemy("Matt", 100, 5, "Fire"), randomInt(0, map.width), randomInt(0, map.height));
+    map.placeObject(new Matt, randomInt(0, map.width), randomInt(0, map.height));
     map.placeObject(potion, randomInt(0, map.width), randomInt(0, map.height));
     map.placeObject(dmgPotion, randomInt(0, map.width), randomInt(0, map.height));
     map.placeObject("store", randomInt(0, map.width), randomInt(0, map.height));

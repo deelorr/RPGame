@@ -1,11 +1,55 @@
-.battle-info {
+.battle-screen {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
     background-color: rgb(226, 212, 194);
     border-radius: 10px;
     padding: 5px;
+    margin: 2px;
     border: rgba(0, 3, 153, 0.808) 3px outset;
+    height: 30%;
+}
+
+.playerStats, .enemyStats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: left;
+    background-color: #f0f0f0;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 2px;
+    height: 100%;
+    width: 45%;
+    border: none;
+}
+
+.playerStats p, .enemyStats p {
+    margin: 5px;
+    padding: 2px;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+}
+
+.battleButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.runBtn, .attackBtn, .specialBtn {
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    text-align: center;
+    padding: 5px;
+    border: none;
+    background-color: #c0bebe80;
+    cursor: pointer;
 }

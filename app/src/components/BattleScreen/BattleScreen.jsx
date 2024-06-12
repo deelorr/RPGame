@@ -22,24 +22,38 @@ const BattleScreen = () => {
   };
 
   return (
-      <div className="battle-info">
-      <h2>BattleScreen</h2>
-      <img src={player.sprite} alt="Ally" />
-      <p>Player: {player.name} (HP: {player.hp})</p>
-      {inBattle && enemy ? (
-        <div>
-        <img src={enemy.sprite} alt="Enemy" />
-        <p>Enemy: {enemy.name} (HP: {enemy.hp})</p>
+    <>
+      <div className="battle-screen">
+        
+        <div className="playerStats">
+          <p>Player: {player.name}</p>
+          <p>HP: {player.hp}</p>
+          <p>Damage: {player.dmg}</p>
+          <p>Special: {player.special}</p>
+          <p>Gold: {player.gold}</p>
+          <div className="battleButtons">
+            <button className='runBtn' onClick={handleRun}>Run</button>
+            <button className='attackBtn' onClick={() => handleAction('attack')}>Attack</button>
+            <button className='specialBtn' onClick={() => handleAction('special')}>Special</button>
+          </div>
         </div>
+      {inBattle && enemy ? (
+        <>
+        <span><p>VS</p></span>
+        <div className='enemyStats'>
+          <p>Enemy: {enemy.name}</p>
+          <p>HP: {enemy.hp}</p>
+          <p>Damage: {enemy.dmg}</p>
+          <p>Weakness: {enemy.weakness}</p>
+        </div>
+        </>
       ) : (
-        <p>Enemy: No enemy</p>
+        <div className='enemyStats'>
+          <p>No enemy</p>
+        </div>
       )}
-      <div className="battle-actions">
-        <button onClick={handleRun}>Run</button>
-        <button className='attackBtn' onClick={() => handleAction('attack')}>Attack</button>
-        <button className='specialBtn' onClick={() => handleAction('special')}>Special</button>
-      </div>
     </div>
+    </>
   );
 };
 
