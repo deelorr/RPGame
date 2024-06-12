@@ -1,8 +1,8 @@
 import Character from '../Character';
 
 class NPC extends Character {
-    constructor(name, hp, dmg) {
-        super(name, hp, dmg);
+    constructor(name, maxHp, baseDmg) {
+        super(name, maxHp, baseDmg);
     }
 
     talk() {

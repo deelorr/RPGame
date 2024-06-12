@@ -27,7 +27,7 @@ const BattleScreen = () => {
         
         <div className="playerStats">
           <p>Player: {player.name}</p>
-          <p>HP: {player.hp}</p>
+          <p>HP: {player.hp}/{player.maxHp}</p>
           <p>Damage: {player.dmg}</p>
           <p>Special: {player.special}</p>
           <p>Gold: {player.gold}</p>
@@ -42,7 +42,7 @@ const BattleScreen = () => {
         <span><p>VS</p></span>
         <div className='enemyStats'>
           <p>Enemy: {enemy.name}</p>
-          <p>HP: {enemy.hp}</p>
+          <p>HP: {enemy.hp}/{enemy.maxHp}</p>
           <p>Damage: {enemy.dmg}</p>
           <p>Weakness: {enemy.weakness}</p>
         </div>

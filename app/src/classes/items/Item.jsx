@@ -16,4 +16,21 @@ class Item {
     }
 }
 
+class EnergyBooster extends Item {
+    constructor() {
+        super('Energy Booster', target => {
+            target.speed += 10;
+        }, true, 50);
+    }
+}
+
+class NanoHealthPotion extends Item {
+    constructor() {
+        super('Nano Health Potion', target => {
+            target.hp += 20;
+        }, true, 20);
+    }
+}
+
+export { EnergyBooster, NanoHealthPotion};
 export default Item;

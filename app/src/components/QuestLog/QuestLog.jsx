@@ -10,8 +10,10 @@ const QuestLog = () => {
     }
 
     return (
-        <div className="quest-log">
+        <>
+        <div className="questContainer">
             <h2>Quest Log</h2>
+            <div className="questLog">
             {player.quests.length === 0 ? (
                 <p>No active quests</p>
             ) : (
@@ -32,7 +34,9 @@ const QuestLog = () => {
                     ))}
                 </ul>
             )}
+            </div>
         </div>
+        </>
     );
 };
 

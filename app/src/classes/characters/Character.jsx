@@ -3,10 +3,13 @@ import Armor from '../items/armor/Armor';
 
 class Character {
     
-    constructor(name, hp, dmg) {
+    constructor(name, maxHp, baseDmg) {
         this.name = name;
-        this.hp = hp;
-        this.dmg = dmg;
+        this.hp = maxHp;
+        this.maxHp = maxHp;
+        this.baseDmg = baseDmg;
+        this.dmg = baseDmg;
+        this.armor = 0;
     }
 
     attack(target) {

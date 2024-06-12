@@ -7,7 +7,7 @@ import Armor from '../classes/items/armor/Armor';
 
 const GameContext = createContext();
 
-const initialMap = new Map(12, 12);
+const initialMap = new Map(16, 11);
 
 export const GameProvider = ({ children }) => {
     const [map, setMap] = useState(initialMap);
@@ -17,6 +17,11 @@ export const GameProvider = ({ children }) => {
     const [battle, setBattle] = useState(null);
     const [storeOpen, setStoreOpen] = useState(false);
     const [enemy, setEnemy] = useState(null);
+    const [gameStarted, setGameStarted] = useState(false);
+
+    const handleStartGame = () => {
+        setGameStarted(true);
+      };
 
     const toggleRenderTrigger = () => { setRenderTrigger(!renderTrigger); };
 
@@ -49,6 +54,9 @@ export const GameProvider = ({ children }) => {
         updateLog,
         renderTrigger,
         toggleRenderTrigger,
+        gameStarted,
+        setGameStarted,
+        handleStartGame
     };
 
     return (

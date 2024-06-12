@@ -1,16 +1,24 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import Item from '../classes/items/Item';
-import Weapon from '../classes/items/weapons/Weapon';
-import Armor from '../classes/items/armor/Armor';
+// import Item from '../classes/items/Item';
+// import Weapon from '../classes/items/weapons/Weapon';
+// import Armor from '../classes/items/armor/Armor';
+import { NanoHealthPotion, EnergyBooster } from '../classes/items/Item';
+import { IonAxe, PlasmaSword, QuantumRifle } from '../classes/items/weapons/Weapon';
+import { CyberHelmet, NanoSuit, PhotonShield } from '../classes/items/armor/Armor';
 
 const InventoryContext = createContext();
 
 const initialInventory = [];
 const initialStoreInventory = [
-    new Item("Potion", (target) => { target.hp += 50; }, true, 10, 2),
-    new Weapon("Sword", null, 15, 50, 1),
-    new Armor("Shield", null, 20, 50, 1),
+    new NanoHealthPotion(),
+    new EnergyBooster(),
+    new IonAxe(),
+    new PlasmaSword(),
+    new QuantumRifle(),
+    new CyberHelmet(),
+    new NanoSuit(),
+    new PhotonShield()
 ];
 
 const InventoryProvider = ({ children }) => {

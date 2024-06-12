@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useRef } from 'react';
 import GameContext from '../../contexts/GameContext';
 import { randomInt } from '../GameUtils/GameUtils';
 import PropTypes from 'prop-types';
@@ -7,7 +7,31 @@ import Enemy from '../../classes/characters/enemies/Enemy';
 
 const Debug = ({ player, playerPosition, addGold }) => {
   const { map, toggleRenderTrigger } = useContext(GameContext);
+  // State for dragging
+  const [isDragging, setIsDragging] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const dragRef = useRef(null);
 
+    const handleMouseDown = (e) => {
+      setIsDragging(true);
+      dragRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const handleMouseMove = (e) => {
+      if (isDragging) {
+        const dx = e.clientX - dragRef.current.x;
+        const dy = e.clientY - dragRef.current.y;
+        setPosition((prevPosition) => ({
+          x: prevPosition.x + dx,
+          y: prevPosition.y + dy,
+        }));
+        dragRef.current = { x: e.clientX, y: e.clientY };
+      }
+    };
+  
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
 
   const generateEnemy = () => {
     const enemy = new Enemy('Goblin', 100, 15, 'Water');
@@ -27,9 +51,15 @@ const Debug = ({ player, playerPosition, addGold }) => {
     }
   };
 
-
   return (
-    <div className='debug'>
+    <div className='debug'
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      style={{
+        transform: `translate(${position.x}px, ${position.y}px)`,
+      }}
+    >
       <span className='debug-title'><h5>DEBUG MENU</h5></span>
       <div className='debug-buttons'>
         <button onClick={() => console.log(player.inventory)}>Check Inventory</button>

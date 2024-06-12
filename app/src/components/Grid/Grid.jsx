@@ -39,11 +39,13 @@ const Grid = ({ map, playerPosition }) => {
     return (
         <div className='mapContainer'>
             <h2>Map</h2>
-            <table className='map'>
-                <tbody>
+            <div className='mapDiv'>
+                <table className='map'>
+                    <tbody>
                     {renderGrid()}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

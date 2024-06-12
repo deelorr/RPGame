@@ -1,8 +1,8 @@
 import Character from '../Character';
 
 class Enemy extends Character {
-    constructor(name, hp, dmg, weakness) {
-        super(name, hp, dmg);
+    constructor(name, maxHp, baseDmg, weakness) {
+        super(name, maxHp, baseDmg);
         this.weakness = weakness;
     }
 

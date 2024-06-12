@@ -2,8 +2,8 @@ import Character from './Character';
 import Quest from '../quests/Quest';
 class Player extends Character {
 
-    constructor(name, hp, dmg, special) {
-        super(name, hp, dmg);
+    constructor(name, maxHp, baseDmg, special) {
+        super(name, maxHp, baseDmg);
         this.special = special;
         this.sprite = '/Ally.png';
         this.gold = 200;
