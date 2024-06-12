@@ -7,13 +7,18 @@ import Armor from '../classes/items/armor/Armor';
 
 const GameContext = createContext();
 
+const initialMap = new Map(10, 10);
+
 export const GameProvider = ({ children }) => {
-    const [map, setMap] = useState(new Map(21, 15));
+    const [map, setMap] = useState(initialMap);
+    const [renderTrigger, setRenderTrigger] = useState(false);
     const [log, setLog] = useState([]);
     const [inBattle, setInBattle] = useState(false);
     const [battle, setBattle] = useState(null);
     const [storeOpen, setStoreOpen] = useState(false);
     const [enemy, setEnemy] = useState(null);
+
+    const toggleRenderTrigger = () => { setRenderTrigger(!renderTrigger); };
 
     // Ensure storeInventory items have a quantity property
     const [storeInventory, setStoreInventory] = useState([
@@ -42,7 +47,9 @@ export const GameProvider = ({ children }) => {
         setEnemy,
         storeInventory,
         setStoreInventory,
-        updateLog
+        updateLog,
+        renderTrigger,
+        toggleRenderTrigger,
     };
 
     return (

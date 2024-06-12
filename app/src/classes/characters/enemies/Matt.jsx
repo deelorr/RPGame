@@ -7,6 +7,7 @@ class Matt extends Enemy {
         dmg=10) {
         super(name, hp, dmg);
         this.weakness = 'fire';
+        this.sprite = '/Matt.png'
     }
 }
 

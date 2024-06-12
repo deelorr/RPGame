@@ -5,7 +5,6 @@ import PlayerContext from '../../contexts/PlayerContext';
 import InventoryContext from '../../contexts/InventoryContext';
 import GameContext from '../../contexts/GameContext';
 import StatBox from '../StatBox/StatBox';
-// import Controls from '../Controls/Controls';
 import LogBox from '../LogBox/LogBox';
 import Inventory from '../Inventory/Inventory';
 import Store from '../Store/Store';
@@ -42,7 +41,7 @@ export default function GameScreen() {
         setEnemy(null);
     };
 
-    const handleMove = useMovement();
+    useMovement();
     const handleAction = useActions();
 
     useEffect(() => {
@@ -59,11 +58,11 @@ export default function GameScreen() {
                             enemy={enemy} 
                             inBattle={inBattle} 
                         />
-                        {/* <Controls 
-                            playerPosition={playerPosition} 
-                            handleMove={handleMove} 
-                            handleAction={handleAction} 
-                        /> */}
+                        <BattleScreen 
+                            player={player} 
+                            enemy={enemy} 
+                            onEndBattle={handleEndBattle} 
+                        />  
                         <Inventory 
                             player={player} 
                             inventory={inventory} 
@@ -90,12 +89,7 @@ export default function GameScreen() {
                         />
                     </div>
                 )}
-                <div className='middleDiv'>
-                        <BattleScreen 
-                            player={player} 
-                            enemy={enemy} 
-                            onEndBattle={handleEndBattle} 
-                        />     
+                <div className='middleDiv'>   
                     <Grid 
                         map={map} 
                         playerPosition={playerPosition} 

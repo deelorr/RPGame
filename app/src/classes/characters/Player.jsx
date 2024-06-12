@@ -1,11 +1,11 @@
 import Character from './Character';
 import Quest from '../quests/Quest';
-
 class Player extends Character {
 
     constructor(name, hp, dmg, special) {
         super(name, hp, dmg);
         this.special = special;
+        this.sprite = '/Ally.png';
         this.gold = 200;
         this.equippedWeapon = null;
         this.equippedArmor = null;

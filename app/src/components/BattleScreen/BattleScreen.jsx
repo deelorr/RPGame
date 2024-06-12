@@ -22,11 +22,15 @@ const BattleScreen = () => {
   };
 
   return (
-    <div className="battle-info">
+      <div className="battle-info">
       <h2>BattleScreen</h2>
+      <img src={player.sprite} alt="Ally" />
       <p>Player: {player.name} (HP: {player.hp})</p>
       {inBattle && enemy ? (
+        <div>
+        <img src={enemy.sprite} alt="Enemy" />
         <p>Enemy: {enemy.name} (HP: {enemy.hp})</p>
+        </div>
       ) : (
         <p>Enemy: No enemy</p>
       )}
