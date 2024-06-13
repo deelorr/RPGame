@@ -6,13 +6,9 @@ import { updateLog } from '../GameUtils/GameUtils';
 import Porter from '../../classes/characters/npc/Porter';
 import defeatMatt from '../../classes/quests/Act 1/defeatMatt';
 import GameContext from '../../contexts/GameContext';
-import PlayerContext from '../../contexts/PlayerContext';
-import InventoryContext from '../../contexts/InventoryContext';
 
 const useMovement = () => {
-    const { setEnemy, inBattle, setInBattle, map, setLog, storeOpen, setStoreOpen } = useContext(GameContext);
-    const { player, playerPosition, setPlayerPosition } = useContext(PlayerContext);
-    const { setInventory } = useContext(InventoryContext);
+    const { player, playerPosition, setPlayerPosition, setEnemy, inBattle, setInBattle, map, setLog, storeOpen, setStoreOpen, setInventory } = useContext(GameContext);
 
     const handleItemEncounter = useCallback((item, x, y) => {
         updateLog(player.receiveItem(item), setLog);

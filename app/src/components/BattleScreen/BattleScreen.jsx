@@ -1,14 +1,12 @@
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import GameContext from '../../contexts/GameContext';
-import PlayerContext from '../../contexts/PlayerContext';
 import useActions from '../GameUtils/useActions';
 import './BattleScreen.css';
 
 
 const BattleScreen = () => {
-  const { player } = useContext(PlayerContext);
-  const { enemy, inBattle, setInBattle, setLog } = useContext(GameContext);
+  const { player, enemy, inBattle, setInBattle, setLog } = useContext(GameContext);
 
   const handleAction = useActions();
 

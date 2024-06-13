@@ -1,8 +1,6 @@
 import { useContext, useEffect } from 'react';
 import useActions from '../GameUtils/useActions';
 import useMovement from '../GameUtils/useMovement';
-import PlayerContext from '../../contexts/PlayerContext';
-import InventoryContext from '../../contexts/InventoryContext';
 import GameContext from '../../contexts/GameContext';
 import LogBox from '../LogBox/LogBox';
 import Inventory from '../Inventory/Inventory';
@@ -17,22 +15,20 @@ import './GameScreen.css';
 
 export default function GameScreen() {
     const { 
-        player, 
-        enemy, 
-        setEnemy, 
-        playerPosition } = useContext(PlayerContext);
-    const { 
-        inventory, 
-        setInventory, 
-        storeInventory, 
-        setStoreInventory } = useContext(InventoryContext);
-    const { 
         map, 
         log, 
         setLog,
         setInBattle, 
         storeOpen, 
-        setStoreOpen } = useContext(GameContext);
+        setStoreOpen,
+        inventory,
+        setInventory,
+        storeInventory,
+        setStoreInventory,
+        player,
+        setEnemy,
+        enemy,
+        playerPosition } = useContext(GameContext);
 
     const handleEndBattle = () => {
         setInBattle(false);

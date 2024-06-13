@@ -2,14 +2,10 @@ import { useContext, useCallback } from 'react';
 import { updateLog, removeEnemyFromMap } from '../GameUtils/GameUtils';
 import Weapon from '../../classes/items/weapons/Weapon';
 import Armor from '../../classes/items/armor/Armor';
-import PlayerContext from '../../contexts/PlayerContext';
-import InventoryContext from '../../contexts/InventoryContext';
 import GameContext from '../../contexts/GameContext';
 
 const useActions = () => {
-    const { player } = useContext(PlayerContext);
-    const { setInventory } = useContext(InventoryContext);
-    const { enemy, setEnemy, inBattle, setInBattle, setLog, map } = useContext(GameContext);
+    const { player, enemy, setEnemy, inBattle, setInBattle, setLog, map, setInventory } = useContext(GameContext);
 
     const handleBattleAction = useCallback((action) => {
         updateLog(action, setLog);

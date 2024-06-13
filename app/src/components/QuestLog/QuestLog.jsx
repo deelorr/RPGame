@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import './QuestLog.css';
-import PlayerContext from '../../contexts/PlayerContext';
+import GameContext from '../../contexts/GameContext';
 
 const QuestLog = () => {
-    const { player } = useContext(PlayerContext);
+    const { player } = useContext(GameContext);
     
     if (!player) {
         return <p>Loading player data...</p>;

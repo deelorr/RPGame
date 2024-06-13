@@ -1,9 +1,10 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Map from '../classes/Map';
-import Item from '../classes/items/Item';
-import Weapon from '../classes/items/weapons/Weapon';
-import Armor from '../classes/items/armor/Armor';
+import Player from '../classes/characters/Player';
+import { NanoHealthPotion, EnergyBooster } from '../classes/items/Item';
+import { IonAxe, PlasmaSword, QuantumRifle } from '../classes/items/weapons/Weapon';
+import { CyberHelmet, NanoSuit, PhotonShield } from '../classes/items/armor/Armor';
 
 const GameContext = createContext();
 
@@ -19,17 +20,57 @@ export const GameProvider = ({ children }) => {
     const [enemy, setEnemy] = useState(null);
     const [gameStarted, setGameStarted] = useState(false);
 
+    // new from inventory context
+
+    const initialInventory = [];
+
+    const initialStoreInventory = [
+        new NanoHealthPotion(),
+        new EnergyBooster(),
+        new IonAxe(),
+        new PlasmaSword(),
+        new QuantumRifle(),
+        new CyberHelmet(),
+        new NanoSuit(),
+        new PhotonShield()
+    ];
+
+    const [storeInventory, setStoreInventory] = useState(initialStoreInventory);
+    const [inventory, setInventory] = useState(initialInventory);
+
+    const addItemToInventory = (item) => {
+        setInventory((prevInventory) => [...prevInventory, item]);
+    };
+
+    const removeItemFromInventory = (itemName) => {
+        setInventory((prevInventory) => prevInventory.filter(item => item.name !== itemName));
+    }; 
+    
+    // new from inventory context
+
+    // new from player context
+
+    const initialPlayer = new Player("Ally", 150, 10, "Teleport Strike");
+    const initialPlayerPosition = { x: 0, y: 0 };
+
+    const [player, setPlayer] = useState(initialPlayer);
+    const [playerPosition, setPlayerPosition] = useState(initialPlayerPosition);
+
+
+
+    // new from player context
+
     const handleStartGame = () => {
         setGameStarted(true);
       };
 
     const toggleRenderTrigger = () => { setRenderTrigger(!renderTrigger); };
 
-    const [storeInventory, setStoreInventory] = useState([
-        new Item("Potion", (target) => { target.hp += 50; }, true, 10, 2),
-        new Weapon("Sword", null, 15, 50, 1),
-        new Armor("Shield", null, 20, 50, 1)
-    ]);
+    // const [storeInventory, setStoreInventory] = useState([
+    //     new Item("Potion", (target) => { target.hp += 50; }, true, 10, 2),
+    //     new Weapon("Sword", null, 15, 50, 1),
+    //     new Armor("Shield", null, 20, 50, 1)
+    // ]);
 
     const updateLog = (message, setLog) => {
         setLog(prevLog => [...prevLog, message]);
@@ -56,7 +97,15 @@ export const GameProvider = ({ children }) => {
         toggleRenderTrigger,
         gameStarted,
         setGameStarted,
-        handleStartGame
+        handleStartGame,
+        inventory,
+        setInventory,
+        addItemToInventory,
+        removeItemFromInventory,
+        player,
+        setPlayer,
+        playerPosition,
+        setPlayerPosition
     };
 
     return (
