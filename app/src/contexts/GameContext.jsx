@@ -1,17 +1,17 @@
 import { useMemo, createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import Map from '../classes/Map';
 import Player from '../classes/characters/Player';
 import { NanoHealthPotion, EnergyBooster } from '../classes/items/Item';
 import { IonAxe, PlasmaSword, QuantumRifle } from '../classes/items/weapons/Weapon';
 import { CyberHelmet, NanoSuit, PhotonShield } from '../classes/items/armor/Armor';
+import initialMap1 from './maps/Map1';
+import initialMap2 from './maps/Map2';
 
 const GameContext = createContext();
 
-const initialMap = new Map(16, 11);
-
 export const GameProvider = ({ children }) => {
-    const [map, setMap] = useState(initialMap);
+    const [maps] = useState([initialMap1, initialMap2]);
+    const [currentMapIndex, setCurrentMapIndex] = useState(0);
     const [renderTrigger, setRenderTrigger] = useState(false);
     const [log, setLog] = useState([]);
     const [inBattle, setInBattle] = useState(false);
@@ -20,7 +20,7 @@ export const GameProvider = ({ children }) => {
     const [enemy, setEnemy] = useState(null);
     const [gameStarted, setGameStarted] = useState(false);
     const [player, setPlayer] = useState(new Player("Ally", 150, 10, "Teleport Strike"));
-    const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 0 });
+    const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 2 });
     const [inventory, setInventory] = useState([]);
     const [storeInventory, setStoreInventory] = useState([
         new NanoHealthPotion(),
@@ -49,9 +49,14 @@ export const GameProvider = ({ children }) => {
         setLog(prevLog => [...prevLog, message]);
     };
 
+    const switchMap = (newMapIndex, targetX, targetY ) => {
+        setCurrentMapIndex(newMapIndex);
+        setPlayerPosition({ x: targetX, y: targetY }); // Reset player position on new map
+    };
+
     const values = useMemo(() => ({
-        map,
-        setMap,
+        map: maps[currentMapIndex],
+        switchMap,
         log,
         setLog,
         inBattle,
@@ -78,7 +83,7 @@ export const GameProvider = ({ children }) => {
         setPlayer,
         playerPosition,
         setPlayerPosition
-    }), [map, log, inBattle, battle, storeOpen, enemy, storeInventory, renderTrigger, gameStarted, inventory, player, playerPosition]);
+    }), [maps, currentMapIndex, log, inBattle, battle, storeOpen, enemy, storeInventory, renderTrigger, gameStarted, inventory, player, playerPosition]);
 
     return (
         <GameContext.Provider value={values}>

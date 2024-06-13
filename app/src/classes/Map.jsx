@@ -5,9 +5,9 @@ class Map {
         this.grid = Array.from({ length: height }, () => Array.from({ length: width }, () => null));
     }
 
-    placeObject(object, x, y) {
+    placeTile(tileType, x, y) {
         if (this.isValidPosition(x, y)) {
-            this.grid[y][x] = object;
+            this.grid[y][x] = tileType;
         }
     }
 
@@ -24,7 +24,7 @@ class Map {
 
     removeItem(x, y) {
         if (this.isValidPosition(x, y)) {
-            this.grid[y][x] = null;
+            this.grid[y][x] = 'plainTile';
         }
     }
 

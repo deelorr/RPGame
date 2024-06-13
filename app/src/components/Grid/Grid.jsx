@@ -6,6 +6,7 @@ import Enemy from '../../classes/characters/enemies/Enemy';
 import Matt from '../../classes/characters/enemies/Matt';
 import NPC from '../../classes/characters/npc/NPC';
 import Porter from '../../classes/characters/npc/Porter';
+import { RoadTile, TransitionTile, BuildingTile, TreeTile, DirtTile } from '../../classes/Tile';
 import './Grid.css';
 
 const Grid = ({ map, playerPosition }) => {
@@ -16,15 +17,20 @@ const Grid = ({ map, playerPosition }) => {
     const getClassForCell = (x, y) => {
         if (x === playerPosition.x && y === playerPosition.y) return 'player';
         const item = map.grid[y][x];
-            if (item instanceof Weapon) return 'weapon';
-            if (item instanceof Armor) return 'armor';
-            if (item instanceof Item) return 'item';
-            if (item instanceof Matt) return 'matt';
-            if (item instanceof Enemy) return 'enemy';
-            if (item instanceof NPC) return 'npc';
-            if (item instanceof Porter) return 'porter';
-            if (item === 'store') return 'store';
-        return 'plainTile';
+        if (item instanceof Weapon) return 'weapon';
+        if (item instanceof Armor) return 'armor';
+        if (item instanceof Item) return 'item';
+        if (item instanceof Matt) return 'matt';
+        if (item instanceof Enemy) return 'enemy';
+        if (item instanceof NPC) return 'npc';
+        if (item instanceof Porter) return 'porter';
+        if (item instanceof TransitionTile) return 'transitionTile';
+        if (item instanceof RoadTile) return 'road';
+        if (item instanceof BuildingTile) return 'building';
+        if (item instanceof TreeTile) return 'tree';
+        if (item === 'store') return 'store';
+        if (item instanceof DirtTile) return 'plainTile';
+        if (typeof item === 'string') return item;
     };
 
     const renderGrid = () => {

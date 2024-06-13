@@ -6,9 +6,10 @@ import { updateLog } from '../GameUtils/GameUtils';
 import Porter from '../../classes/characters/npc/Porter';
 import defeatMatt from '../../classes/quests/Act 1/defeatMatt';
 import GameContext from '../../contexts/GameContext';
+import { TransitionTile } from '../../classes/Tile';
 
 const useMovement = () => {
-    const { player, playerPosition, setPlayerPosition, setEnemy, inBattle, setInBattle, map, setLog, storeOpen, setStoreOpen, setInventory } = useContext(GameContext);
+    const { player, playerPosition, setPlayerPosition, setEnemy, inBattle, setInBattle, map, setLog, storeOpen, setStoreOpen, setInventory, switchMap } = useContext(GameContext);
 
     const handleItemEncounter = useCallback((item, x, y) => {
         updateLog(player.receiveItem(item), setLog);
@@ -25,11 +26,13 @@ const useMovement = () => {
         const newX = playerPosition.x + dx;
         const newY = playerPosition.y + dy;
 
+
         if (map.isValidPosition(newX, newY)) {
-            setPlayerPosition({ x: newX, y: newY });
             const tileObject = map.getItem(newX, newY);
 
-            if (tileObject) {
+            if (tileObject && tileObject.walkable !== false) { // Check if the tile is walkable
+                setPlayerPosition({ x: newX, y: newY });
+
                 if (tileObject instanceof Item) {
                     handleItemEncounter(tileObject, newX, newY);
                 } else if (tileObject === "store") {
@@ -50,10 +53,15 @@ const useMovement = () => {
                     setInBattle(true);
                     const battle = new Battle(player, tileObject);
                     battle.start();
+                } else if (tileObject instanceof TransitionTile) {
+                    console.log(`Transitioning to map index: ${tileObject.targetMapIndex}`);
+                    switchMap(tileObject.targetMapIndex, tileObject.targetX, tileObject.targetY);
                 }
+            } else {
+                updateLog("You can't walk through that!", setLog);
             }
         }
-    }, [inBattle, player, setEnemy, setInBattle, playerPosition, map, setPlayerPosition, setStoreOpen, setLog, handleItemEncounter]);
+    }, [switchMap, inBattle, player, setEnemy, setInBattle, playerPosition, map, setPlayerPosition, setStoreOpen, setLog, handleItemEncounter]);
 
     const handleKeyDown = useCallback((event) => {
         if (inBattle || storeOpen) return;

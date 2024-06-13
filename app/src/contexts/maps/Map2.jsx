@@ -1,0 +1,100 @@
+import Map from '../../classes/Map';
+import Matt from '../../classes/characters/enemies/Matt';
+import { DirtTile, TreeTile, RoadTile, TransitionTile } from '../../classes/Tile';
+
+const initialMap2 = new Map(12, 7);
+
+initialMap2.placeTile(new DirtTile, 0,0);
+initialMap2.placeTile(new DirtTile, 1,0);
+initialMap2.placeTile(new DirtTile, 2,0);
+initialMap2.placeTile(new DirtTile, 3,0);
+initialMap2.placeTile(new DirtTile, 4,0);
+initialMap2.placeTile(new DirtTile, 5,0);
+initialMap2.placeTile(new DirtTile, 6,0);
+initialMap2.placeTile(new DirtTile, 7,0);
+initialMap2.placeTile(new DirtTile, 8,0);
+initialMap2.placeTile(new DirtTile, 9,0);
+initialMap2.placeTile(new DirtTile, 10,0);
+initialMap2.placeTile(new DirtTile, 11,0);
+
+initialMap2.placeTile(new DirtTile, 0,1);
+initialMap2.placeTile(new DirtTile, 1,1);
+initialMap2.placeTile(new DirtTile, 2,1);
+initialMap2.placeTile(new TreeTile, 3,1);
+initialMap2.placeTile(new DirtTile, 4,1);
+initialMap2.placeTile(new DirtTile, 5, 1);
+initialMap2.placeTile(new DirtTile, 6,1);
+initialMap2.placeTile(new DirtTile, 7,1);
+initialMap2.placeTile(new DirtTile, 8,1);
+initialMap2.placeTile(new DirtTile, 9,1);
+initialMap2.placeTile(new DirtTile, 10,1);
+initialMap2.placeTile(new DirtTile, 11,1);
+
+initialMap2.placeTile(new RoadTile, 1, 2);
+initialMap2.placeTile(new TransitionTile(0, 11, 2), 0, 2);
+initialMap2.placeTile(new RoadTile, 2, 2);
+initialMap2.placeTile(new RoadTile, 3, 2);
+initialMap2.placeTile(new RoadTile, 4, 2);
+initialMap2.placeTile(new RoadTile, 5, 2);
+initialMap2.placeTile(new RoadTile, 6, 2);
+initialMap2.placeTile(new RoadTile, 7, 2);
+initialMap2.placeTile(new RoadTile, 8, 2);
+initialMap2.placeTile(new RoadTile, 9, 2);
+initialMap2.placeTile(new RoadTile, 10, 2);
+initialMap2.placeTile(new RoadTile, 11, 2);
+initialMap2.placeTile(new RoadTile, 12, 2);
+initialMap2.placeTile(new RoadTile, 13, 2);
+
+initialMap2.placeTile(new DirtTile, 0, 3);
+initialMap2.placeTile(new DirtTile, 1, 3);
+initialMap2.placeTile(new DirtTile, 2, 3);
+initialMap2.placeTile(new DirtTile, 3, 3);
+initialMap2.placeTile(new DirtTile, 4, 3);
+initialMap2.placeTile(new DirtTile, 5, 3);
+initialMap2.placeTile(new TreeTile, 6, 3);
+initialMap2.placeTile(new DirtTile, 7, 3);
+initialMap2.placeTile(new DirtTile, 8, 3);
+initialMap2.placeTile(new DirtTile, 9, 3);
+initialMap2.placeTile(new DirtTile, 10, 3);
+initialMap2.placeTile(new DirtTile, 11, 3);
+
+initialMap2.placeTile(new DirtTile, 0, 4);
+initialMap2.placeTile(new DirtTile, 1, 4);
+initialMap2.placeTile(new DirtTile, 2, 4);
+initialMap2.placeTile(new DirtTile, 3, 4);
+initialMap2.placeTile(new DirtTile, 4, 4);
+initialMap2.placeTile(new DirtTile, 5, 4);
+initialMap2.placeTile(new DirtTile, 6, 4);
+initialMap2.placeTile(new DirtTile, 7, 4);
+initialMap2.placeTile(new DirtTile, 8, 4);
+initialMap2.placeTile(new DirtTile, 9, 4);
+initialMap2.placeTile(new DirtTile, 10, 4);
+initialMap2.placeTile(new DirtTile, 11, 4);
+
+initialMap2.placeTile(new DirtTile, 0, 5);
+initialMap2.placeTile(new DirtTile, 1, 5);
+initialMap2.placeTile(new DirtTile, 2, 5);
+initialMap2.placeTile(new DirtTile, 3, 5);
+initialMap2.placeTile(new DirtTile, 4, 5);
+initialMap2.placeTile(new DirtTile, 5, 5);
+initialMap2.placeTile(new DirtTile, 6, 5);
+initialMap2.placeTile(new TreeTile, 7, 5);
+initialMap2.placeTile(new DirtTile, 8, 5);
+initialMap2.placeTile(new DirtTile, 9, 5);
+initialMap2.placeTile(new Matt, 10, 5);
+initialMap2.placeTile(new DirtTile, 11, 5);
+
+initialMap2.placeTile(new DirtTile, 0, 6);
+initialMap2.placeTile(new DirtTile, 1, 6);
+initialMap2.placeTile(new TreeTile, 2, 6);
+initialMap2.placeTile(new DirtTile, 3, 6);
+initialMap2.placeTile(new DirtTile, 4, 6);
+initialMap2.placeTile(new DirtTile, 5, 6);
+initialMap2.placeTile(new DirtTile, 6, 6);
+initialMap2.placeTile(new DirtTile, 7, 6);
+initialMap2.placeTile(new DirtTile, 8, 6);
+initialMap2.placeTile(new DirtTile, 9, 6);
+initialMap2.placeTile(new DirtTile, 10, 6);
+initialMap2.placeTile(new DirtTile, 11, 6);
+
+export default initialMap2;

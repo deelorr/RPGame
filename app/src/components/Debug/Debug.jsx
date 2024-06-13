@@ -43,8 +43,8 @@ const Debug = ({ player, playerPosition, addGold }) => {
     console.log('Generating enemy at position:', { x, y });
     console.log('Enemy details:', enemy);
 
-    if (map.placeObject) {
-      map.placeObject(enemy, x, y);
+    if (map.placeTile) {
+      map.placeTile(enemy, x, y);
       console.log('Enemy placed on the map:', map.grid[y][x]);
       console.log(y, x)
       toggleRenderTrigger();
