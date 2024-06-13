@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { useMemo, createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import Map from '../classes/Map';
 import Player from '../classes/characters/Player';
@@ -19,12 +19,10 @@ export const GameProvider = ({ children }) => {
     const [storeOpen, setStoreOpen] = useState(false);
     const [enemy, setEnemy] = useState(null);
     const [gameStarted, setGameStarted] = useState(false);
-
-    // new from inventory context
-
-    const initialInventory = [];
-
-    const initialStoreInventory = [
+    const [player, setPlayer] = useState(new Player("Ally", 150, 10, "Teleport Strike"));
+    const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 0 });
+    const [inventory, setInventory] = useState([]);
+    const [storeInventory, setStoreInventory] = useState([
         new NanoHealthPotion(),
         new EnergyBooster(),
         new IonAxe(),
@@ -33,10 +31,7 @@ export const GameProvider = ({ children }) => {
         new CyberHelmet(),
         new NanoSuit(),
         new PhotonShield()
-    ];
-
-    const [storeInventory, setStoreInventory] = useState(initialStoreInventory);
-    const [inventory, setInventory] = useState(initialInventory);
+    ]);
 
     const addItemToInventory = (item) => {
         setInventory((prevInventory) => [...prevInventory, item]);
@@ -44,40 +39,17 @@ export const GameProvider = ({ children }) => {
 
     const removeItemFromInventory = (itemName) => {
         setInventory((prevInventory) => prevInventory.filter(item => item.name !== itemName));
-    }; 
-    
-    // new from inventory context
-
-    // new from player context
-
-    const initialPlayer = new Player("Ally", 150, 10, "Teleport Strike");
-    const initialPlayerPosition = { x: 0, y: 0 };
-
-    const [player, setPlayer] = useState(initialPlayer);
-    const [playerPosition, setPlayerPosition] = useState(initialPlayerPosition);
-
-
-
-    // new from player context
+    };
 
     const handleStartGame = () => {
         setGameStarted(true);
-      };
+    };
 
-    const toggleRenderTrigger = () => { setRenderTrigger(!renderTrigger); };
-
-    // const [storeInventory, setStoreInventory] = useState([
-    //     new Item("Potion", (target) => { target.hp += 50; }, true, 10, 2),
-    //     new Weapon("Sword", null, 15, 50, 1),
-    //     new Armor("Shield", null, 20, 50, 1)
-    // ]);
-
-    const updateLog = (message, setLog) => {
+    const updateLog = (message) => {
         setLog(prevLog => [...prevLog, message]);
-    }
-;
+    };
 
-    const values = {
+    const values = useMemo(() => ({
         map,
         setMap,
         log,
@@ -94,7 +66,7 @@ export const GameProvider = ({ children }) => {
         setStoreInventory,
         updateLog,
         renderTrigger,
-        toggleRenderTrigger,
+        setRenderTrigger,
         gameStarted,
         setGameStarted,
         handleStartGame,
@@ -106,7 +78,7 @@ export const GameProvider = ({ children }) => {
         setPlayer,
         playerPosition,
         setPlayerPosition
-    };
+    }), [map, log, inBattle, battle, storeOpen, enemy, storeInventory, renderTrigger, gameStarted, inventory, player, playerPosition]);
 
     return (
         <GameContext.Provider value={values}>

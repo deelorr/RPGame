@@ -39,8 +39,10 @@ export default function GameScreen() {
     const handleAction = useActions();
 
     useEffect(() => {
-        initializeGame(map, setLog);
-    }, [map, setLog]);
+        if (map && map.grid && map.grid.every(row => row.every(cell => cell === null))) {
+            initializeGame(map, setLog);
+        }
+    }, [map, setLog]); // Ensure it runs only once if the map is empty
 
     return (
         <>
@@ -71,7 +73,7 @@ export default function GameScreen() {
                         />
                     </div>
                 )}
-                <div className='middleDiv'>   
+                <div className='middleDiv'>
                     <Grid 
                         map={map} 
                         playerPosition={playerPosition} 

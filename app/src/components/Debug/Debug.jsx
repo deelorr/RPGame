@@ -6,11 +6,13 @@ import './Debug.css';
 import Enemy from '../../classes/characters/enemies/Enemy';
 
 const Debug = ({ player, playerPosition, addGold }) => {
-  const { map, toggleRenderTrigger } = useContext(GameContext);
-  // State for dragging
+  const { map, renderTrigger, setRenderTrigger} = useContext(GameContext);
   const [isDragging, setIsDragging] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const dragRef = useRef(null);
+
+  const toggleRenderTrigger = () => { 
+      setRenderTrigger(!renderTrigger); };
 
     const handleMouseDown = (e) => {
       setIsDragging(true);

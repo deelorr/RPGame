@@ -9,6 +9,10 @@ import Porter from '../../classes/characters/npc/Porter';
 import './Grid.css';
 
 const Grid = ({ map, playerPosition }) => {
+    if (!map) {
+        return <div>Loading...</div>;
+    }
+
     const getClassForCell = (x, y) => {
         if (x === playerPosition.x && y === playerPosition.y) return 'player';
         const item = map.grid[y][x];

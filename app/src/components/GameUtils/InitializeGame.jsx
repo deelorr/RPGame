@@ -4,6 +4,10 @@ import Matt from '../../classes/characters/enemies/Matt';
 import { updateLog, randomInt } from '../GameUtils/GameUtils';
 
 export const initializeGame = (map, setLog) => {
+    if (map && map.grid && map.grid.length > 0) {
+        console.log('Map already initialized');
+    }
+
     const potion = new Item("Potion", (target) => {
         target.hp += 50;
     }, true, 10, 1);
