@@ -10,18 +10,24 @@ import initialMap2 from './maps/Map2';
 const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
+
     const [maps] = useState([initialMap1, initialMap2]);
     const [currentMapIndex, setCurrentMapIndex] = useState(0);
+    
+    const [gameStarted, setGameStarted] = useState(false);
     const [renderTrigger, setRenderTrigger] = useState(false);
+
     const [log, setLog] = useState([]);
+
     const [inBattle, setInBattle] = useState(false);
     const [battle, setBattle] = useState(null);
-    const [storeOpen, setStoreOpen] = useState(false);
     const [enemy, setEnemy] = useState(null);
-    const [gameStarted, setGameStarted] = useState(false);
+
     const [player, setPlayer] = useState(new Player("Ally", 150, 10, "Teleport Strike"));
-    const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 2 });
+    const [playerPosition, setPlayerPosition] = useState({ x: 3, y: 7 });
+
     const [inventory, setInventory] = useState([]);
+    const [storeOpen, setStoreOpen] = useState(false);
     const [storeInventory, setStoreInventory] = useState([
         new NanoHealthPotion(),
         new EnergyBooster(),
@@ -82,7 +88,8 @@ export const GameProvider = ({ children }) => {
         player,
         setPlayer,
         playerPosition,
-        setPlayerPosition
+        setPlayerPosition,
+        currentMapIndex
     }), [maps, currentMapIndex, log, inBattle, battle, storeOpen, enemy, storeInventory, renderTrigger, gameStarted, inventory, player, playerPosition]);
 
     return (

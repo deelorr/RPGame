@@ -11,6 +11,18 @@ class Map {
         }
     }
 
+    placeRow(tileType, y) {
+        for (let x = 0; x < this.width; x++) {
+            this.placeTile(tileType, x, y);
+        }
+    }
+
+    placeColumn(tileType, x) {
+        for (let y = 0; y < this.height; y++) {
+            this.placeTile(tileType, x, y);
+        }
+    }
+
     isValidPosition(x, y) {
         return x >= 0 && x < this.width && y >= 0 && y < this.height;
     }

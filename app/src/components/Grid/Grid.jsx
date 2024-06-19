@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import GameContext from '../../contexts/GameContext';
 import PropTypes from 'prop-types';
 import Weapon from '../../classes/items/weapons/Weapon';
 import Armor from '../../classes/items/armor/Armor';
@@ -9,7 +11,9 @@ import Porter from '../../classes/characters/npc/Porter';
 import { RoadTile, TransitionTile, BuildingTile, TreeTile, DirtTile } from '../../classes/Tile';
 import './Grid.css';
 
-const Grid = ({ map, playerPosition }) => {
+const Grid = ({ map }) => {
+    const { playerPosition } = useContext(GameContext);
+
     if (!map) {
         return <div>Loading...</div>;
     }
@@ -21,9 +25,9 @@ const Grid = ({ map, playerPosition }) => {
         if (item instanceof Armor) return 'armor';
         if (item instanceof Item) return 'item';
         if (item instanceof Matt) return 'matt';
+        if (item instanceof Porter) return 'porter';
         if (item instanceof Enemy) return 'enemy';
         if (item instanceof NPC) return 'npc';
-        if (item instanceof Porter) return 'porter';
         if (item instanceof TransitionTile) return 'transitionTile';
         if (item instanceof RoadTile) return 'road';
         if (item instanceof BuildingTile) return 'building';
@@ -74,6 +78,7 @@ Grid.propTypes = {
         x: PropTypes.number.isRequired,
         y: PropTypes.number.isRequired,
     }).isRequired,
+    playerAnimation: PropTypes.string,
 };
 
 export default Grid;

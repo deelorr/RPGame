@@ -34,7 +34,6 @@ class TransitionTile extends Tile {
         this.targetMapIndex = targetMapIndex;
         this.targetX = targetX;
         this.targetY = targetY;
-        this.walkable = true;
     }
 }
 

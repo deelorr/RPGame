@@ -1,12 +1,11 @@
 import { useContext, useState, useRef } from 'react';
 import GameContext from '../../contexts/GameContext';
-import { randomInt } from '../GameUtils/GameUtils';
 import PropTypes from 'prop-types';
 import './Debug.css';
 import Enemy from '../../classes/characters/enemies/Enemy';
 
 const Debug = ({ player, playerPosition, addGold }) => {
-  const { map, renderTrigger, setRenderTrigger} = useContext(GameContext);
+  const { map, renderTrigger, setRenderTrigger, currentMapIndex } = useContext(GameContext);
   const [isDragging, setIsDragging] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const dragRef = useRef(null);
@@ -35,23 +34,30 @@ const Debug = ({ player, playerPosition, addGold }) => {
       setIsDragging(false);
     };
 
-  const generateEnemy = () => {
-    const enemy = new Enemy('Goblin', 100, 15, 'Water');
-    const x = randomInt(0, map.width - 1);
-    const y = randomInt(0, map.height - 1);
-
-    console.log('Generating enemy at position:', { x, y });
-    console.log('Enemy details:', enemy);
-
-    if (map.placeTile) {
-      map.placeTile(enemy, x, y);
-      console.log('Enemy placed on the map:', map.grid[y][x]);
-      console.log(y, x)
-      toggleRenderTrigger();
-    } else {
-      console.error('map.placeObject is not a function');
-    }
-  };
+    const generateEnemy = () => {
+      const enemy = new Enemy('Goblin', 100, 15, 'Water');
+      const x = playerPosition.x + 2;
+      const y = playerPosition.y;
+    
+      console.log('Generating enemy at position:', { x, y });
+      console.log('Enemy details:', enemy);
+    
+      // Check if the tile at (x, y) is walkable
+      const tileObject = map.grid[y][x]; 
+      // Assuming map.grid[y][x] gives you the tile object
+      if (tileObject && tileObject.walkable) {
+        if (map.placeTile) {
+          map.placeTile(enemy, x, y);
+          console.log('Enemy placed on the map at:', { x, y });
+          toggleRenderTrigger();
+        } else {
+          console.error('map.placeTile is not a function');
+        }
+      } else {
+        console.warn(`Cannot place enemy at (${x}, ${y}): Tile is not walkable or does not exist.`);
+      }
+    };
+    
 
   return (
     <div className='debug'
@@ -71,6 +77,7 @@ const Debug = ({ player, playerPosition, addGold }) => {
       </div>
       <div className='debug-stats'>
         <h5>Player Position: X:{playerPosition.x}, Y:{playerPosition.y}</h5>
+        <h5>Map Index: {currentMapIndex}</h5>
       </div>
     </div>
   );

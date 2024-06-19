@@ -35,14 +35,17 @@ const useMovement = () => {
 
                 if (tileObject instanceof Item) {
                     handleItemEncounter(tileObject, newX, newY);
+
                 } else if (tileObject === "store") {
                     updateLog("You found a store!", setLog);
                     setStoreOpen(true);
+
                 } else if (tileObject instanceof Porter) {
                     const questMessage = tileObject.giveQuest(defeatMatt, player);
                     updateLog(tileObject.talk(), setLog);
                     updateLog(questMessage, setLog);
                     defeatMatt.startQuest();
+
                 } else if (tileObject instanceof Enemy) {
                     if (tileObject.name === 'Matt') {
                         defeatMatt.completeObjective(0);
@@ -53,10 +56,12 @@ const useMovement = () => {
                     setInBattle(true);
                     const battle = new Battle(player, tileObject);
                     battle.start();
+
                 } else if (tileObject instanceof TransitionTile) {
                     console.log(`Transitioning to map index: ${tileObject.targetMapIndex}`);
                     switchMap(tileObject.targetMapIndex, tileObject.targetX, tileObject.targetY);
                 }
+
             } else {
                 updateLog("You can't walk through that!", setLog);
             }

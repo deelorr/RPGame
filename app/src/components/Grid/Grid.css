@@ -1,3 +1,5 @@
+
+
 /* Grid.css */
 .mapContainer {
     display: flex;
@@ -20,12 +22,12 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 5px;
-    margin: 2px;
     border-radius: 10px;
     background-color: #f0f0f0;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     text-align: center;
+    background-image: url('/backdrop.jpg');
+    background-size: 100% 100%;
 }
 
 table.map {
@@ -39,61 +41,28 @@ td {
     height: 45px;
     text-align: center;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
+    border-radius: 10px;
 }
 
 .player {
-    background-color: yellow;
-}
-
-.armor {
-    background-color: orange;
-}
-
-.weapon {
-    background-color: green;
-}
-
-.item {
-    background-color: blue;
-}
-
-.enemy {
-    background-color: red;
-}
-
-.plainTile {
-    background-color: rgb(172, 155, 133);
-}
-
-.store {
-    background-color: silver;
-}
-
-.npc {
-    background-color: rgb(255, 255, 255);
+    background-image: url('/Ally.png');
+    background-repeat: no-repeat;
+    background-size: 100% 115%;
 }
 
 .porter {
-    background-color: rgb(59, 155, 179);
+    background-image: url('/Porter.png');
+    background-repeat: no-repeat;
+    background-size: 100% 115%;
 }
 
 .matt {
-    background-color: rgb(88, 0, 0);
+    background-image: url('/Matt.png');
+    background-repeat: no-repeat;
+    background-size: 100% 115%;
 }
 
-.road {
-    background-color: rgb(0, 0, 0);
+.enemy {
+    background-color: rgb(255, 0, 0);
 }
 
-.tree {
-    background-color: rgb(0, 128, 0);
-}
-
-.building {
-    background-color: rgb(128, 128, 128);
-}
-
-.transitionTile {
-    background-color: rgb(255, 31, 218);
-}

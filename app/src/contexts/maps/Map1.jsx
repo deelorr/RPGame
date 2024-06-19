@@ -1,100 +1,35 @@
 import Map from '../../classes/Map';
 import Porter from '../../classes/characters/npc/Porter';
-import { DirtTile, BuildingTile, TreeTile, RoadTile, TransitionTile } from '../../classes/Tile';
+import { DirtTile, BuildingTile, TransitionTile } from '../../classes/Tile';
 
-const initialMap1 = new Map(12, 7);
+const initialMap1 = new Map(25, 10);
 
-initialMap1.placeTile(new DirtTile, 0,0);
-initialMap1.placeTile(new DirtTile, 1,0);
-initialMap1.placeTile(new DirtTile, 2,0);
-initialMap1.placeTile(new DirtTile, 3,0);
-initialMap1.placeTile(new BuildingTile, 4,0);
-initialMap1.placeTile(new BuildingTile, 5,0);
-initialMap1.placeTile(new BuildingTile, 6,0);
-initialMap1.placeTile(new DirtTile, 7,0);
-initialMap1.placeTile(new DirtTile, 8,0);
-initialMap1.placeTile(new DirtTile, 9,0);
-initialMap1.placeTile(new DirtTile, 10,0);
-initialMap1.placeTile(new DirtTile, 11,0);
+// Fill the entire map with DirtTile
+for (let x = 0; x < 25; x++) {
+    for (let y = 0; y < 10; y++) {
+        initialMap1.placeTile(new DirtTile(), x, y);
+    }
+}
 
-initialMap1.placeTile(new DirtTile, 0,1);
-initialMap1.placeTile(new DirtTile, 1,1);
-initialMap1.placeTile(new DirtTile, 2,1);
-initialMap1.placeTile(new TreeTile, 3,1);
-initialMap1.placeTile(new BuildingTile, 4,1);
-initialMap1.placeTile('store', 5, 1);
-initialMap1.placeTile(new BuildingTile, 6,1);
-initialMap1.placeTile(new TreeTile, 7,1);
-initialMap1.placeTile(new DirtTile, 8,1);
-initialMap1.placeTile(new Porter, 9,1);
-initialMap1.placeTile(new DirtTile, 10,1);
-initialMap1.placeTile(new DirtTile, 11,1);
+// Place rows of BuildingTile
+for (let row = 0; row <= 6; row++) {
+    initialMap1.placeRow(new BuildingTile(), row);
+}
 
-initialMap1.placeTile(new RoadTile, 1, 2);
-initialMap1.placeTile(new RoadTile, 0, 2);
-initialMap1.placeTile(new RoadTile, 2, 2);
-initialMap1.placeTile(new RoadTile, 3, 2);
-initialMap1.placeTile(new RoadTile, 4, 2);
-initialMap1.placeTile(new RoadTile, 5, 2);
-initialMap1.placeTile(new RoadTile, 6, 2);
-initialMap1.placeTile(new RoadTile, 7, 2);
-initialMap1.placeTile(new RoadTile, 8, 2);
-initialMap1.placeTile(new RoadTile, 9, 2);
-initialMap1.placeTile(new RoadTile, 10, 2);
-initialMap1.placeTile(new RoadTile, 12, 2);
-initialMap1.placeTile(new RoadTile, 13, 2);
-initialMap1.placeTile(new TransitionTile(1, 0, 2), 11, 2);
+// Place specific columns of BuildingTile
+const buildingColumns = [0, 1, 2, 8, 17, 19];
+buildingColumns.forEach(col => initialMap1.placeColumn(new BuildingTile(), col));
 
-initialMap1.placeTile(new DirtTile, 0, 3);
-initialMap1.placeTile(new DirtTile, 1, 3);
-initialMap1.placeTile(new DirtTile, 2, 3);
-initialMap1.placeTile(new DirtTile, 3, 3);
-initialMap1.placeTile(new DirtTile, 4, 3);
-initialMap1.placeTile(new DirtTile, 5, 3);
-initialMap1.placeTile(new DirtTile, 6, 3);
-initialMap1.placeTile(new DirtTile, 7, 3);
-initialMap1.placeTile(new DirtTile, 8, 3);
-initialMap1.placeTile(new DirtTile, 9, 3);
-initialMap1.placeTile(new DirtTile, 10, 3);
-initialMap1.placeTile(new DirtTile, 11, 3);
-
-initialMap1.placeTile(new DirtTile, 0, 4);
-initialMap1.placeTile(new DirtTile, 1, 4);
-initialMap1.placeTile(new DirtTile, 2, 4);
-initialMap1.placeTile(new TreeTile, 3, 4);
-initialMap1.placeTile(new DirtTile, 4, 4);
-initialMap1.placeTile(new DirtTile, 5, 4);
-initialMap1.placeTile(new DirtTile, 6, 4);
-initialMap1.placeTile(new DirtTile, 7, 4);
-initialMap1.placeTile(new DirtTile, 8, 4);
-initialMap1.placeTile(new DirtTile, 9, 4);
-initialMap1.placeTile(new DirtTile, 10, 4);
-initialMap1.placeTile(new DirtTile, 11, 4);
-
-initialMap1.placeTile(new DirtTile, 0, 5);
-initialMap1.placeTile(new DirtTile, 1, 5);
-initialMap1.placeTile(new DirtTile, 2, 5);
-initialMap1.placeTile(new DirtTile, 3, 5);
-initialMap1.placeTile(new DirtTile, 4, 5);
-initialMap1.placeTile(new DirtTile, 5, 5);
-initialMap1.placeTile(new DirtTile, 6, 5);
-initialMap1.placeTile(new DirtTile, 7, 5);
-initialMap1.placeTile(new TreeTile, 8, 5);
-initialMap1.placeTile(new DirtTile, 9, 5);
-initialMap1.placeTile(new DirtTile, 10, 5);
-initialMap1.placeTile(new DirtTile, 11, 5);
-
-initialMap1.placeTile(new DirtTile, 0, 6);
-initialMap1.placeTile(new DirtTile, 1, 6);
-initialMap1.placeTile(new DirtTile, 2, 6);
-initialMap1.placeTile(new DirtTile, 3, 6);
-initialMap1.placeTile(new DirtTile, 4, 6);
-initialMap1.placeTile(new DirtTile, 5, 6);
-initialMap1.placeTile(new DirtTile, 6, 6);
-initialMap1.placeTile(new DirtTile, 7, 6);
-initialMap1.placeTile(new DirtTile, 8, 6);
-initialMap1.placeTile(new DirtTile, 9, 6);
-initialMap1.placeTile(new DirtTile, 10, 6);
-initialMap1.placeTile(new DirtTile, 11, 6);
+// Place specific tiles
+initialMap1.placeRow(new DirtTile(), 9);
+initialMap1.placeTile(new DirtTile(), 0, 8);
+initialMap1.placeTile(new DirtTile(), 1, 8);
+initialMap1.placeTile(new DirtTile(), 2, 8);
+initialMap1.placeTile(new BuildingTile(), 9, 7);
+initialMap1.placeTile(new BuildingTile(), 10, 7);
+initialMap1.placeTile(new BuildingTile(), 13, 7);
+initialMap1.placeTile(new TransitionTile(1, 0, 9), 24, 9);
+initialMap1.placeTile('store', 5, 6);
+initialMap1.placeTile(new Porter(), 20, 7);
 
 export default initialMap1;

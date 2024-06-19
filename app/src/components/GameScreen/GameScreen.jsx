@@ -15,11 +15,11 @@ import './GameScreen.css';
 
 export default function GameScreen() {
     const { 
-        map, 
-        log, 
+        map,
+        log,
         setLog,
-        setInBattle, 
-        storeOpen, 
+        setInBattle,
+        storeOpen,
         setStoreOpen,
         inventory,
         setInventory,
@@ -28,7 +28,8 @@ export default function GameScreen() {
         player,
         setEnemy,
         enemy,
-        playerPosition } = useContext(GameContext);
+        playerPosition 
+    } = useContext(GameContext);
 
     const handleEndBattle = () => {
         setInBattle(false);
@@ -76,7 +77,7 @@ export default function GameScreen() {
                 <div className='middleDiv'>
                     <Grid 
                         map={map} 
-                        playerPosition={playerPosition} 
+                        playerPosition={playerPosition}
                     />
                     <BattleScreen 
                             player={player} 
