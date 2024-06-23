@@ -6,6 +6,7 @@ import { IonAxe, PlasmaSword, QuantumRifle } from '../classes/items/weapons/Weap
 import { CyberHelmet, NanoSuit, PhotonShield } from '../classes/items/armor/Armor';
 import initialMap1 from './maps/Map1';
 import initialMap2 from './maps/Map2';
+import { switchMap as switchMapUtil } from '../components/GameUtils/GameUtils';
 
 const GameContext = createContext();
 
@@ -30,6 +31,7 @@ export const GameProvider = ({ children }) => {
     const [storeOpen, setStoreOpen] = useState(false);
     const [storeInventory, setStoreInventory] = useState([
         new NanoHealthPotion(),
+        new NanoHealthPotion(),
         new EnergyBooster(),
         new IonAxe(),
         new PlasmaSword(),
@@ -39,26 +41,7 @@ export const GameProvider = ({ children }) => {
         new PhotonShield()
     ]);
 
-    const addItemToInventory = (item) => {
-        setInventory((prevInventory) => [...prevInventory, item]);
-    };
-
-    const removeItemFromInventory = (itemName) => {
-        setInventory((prevInventory) => prevInventory.filter(item => item.name !== itemName));
-    };
-
-    const handleStartGame = () => {
-        setGameStarted(true);
-    };
-
-    const updateLog = (message) => {
-        setLog(prevLog => [...prevLog, message]);
-    };
-
-    const switchMap = (newMapIndex, targetX, targetY ) => {
-        setCurrentMapIndex(newMapIndex);
-        setPlayerPosition({ x: targetX, y: targetY }); // Reset player position on new map
-    };
+    const switchMap = switchMapUtil(setCurrentMapIndex, setPlayerPosition);
 
     const values = useMemo(() => ({
         map: maps[currentMapIndex],
@@ -75,22 +58,18 @@ export const GameProvider = ({ children }) => {
         setEnemy,
         storeInventory,
         setStoreInventory,
-        updateLog,
         renderTrigger,
         setRenderTrigger,
         gameStarted,
         setGameStarted,
-        handleStartGame,
         inventory,
         setInventory,
-        addItemToInventory,
-        removeItemFromInventory,
         player,
         setPlayer,
         playerPosition,
         setPlayerPosition,
         currentMapIndex
-    }), [maps, currentMapIndex, log, inBattle, battle, storeOpen, enemy, storeInventory, renderTrigger, gameStarted, inventory, player, playerPosition]);
+    }), [switchMap, maps, currentMapIndex, log, inBattle, battle, storeOpen, enemy, storeInventory, renderTrigger, gameStarted, inventory, player, playerPosition]);
 
     return (
         <GameContext.Provider value={values}>

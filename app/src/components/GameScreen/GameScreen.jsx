@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import useActions from '../GameUtils/useActions';
 import useMovement from '../GameUtils/useMovement';
 import GameContext from '../../contexts/GameContext';
@@ -9,11 +9,10 @@ import QuestLog from '../QuestLog/QuestLog';
 import BattleScreen from '../BattleScreen/BattleScreen';
 import Debug from '../Debug/Debug';
 import Grid from '../Grid/Grid';
-import { initializeGame } from '../GameUtils/InitializeGame';
 import { handleBuyItem, closeStore, addGold, updateLog } from '../GameUtils/GameUtils';
 import './GameScreen.css';
 
-export default function GameScreen() {
+const GameScreen = () => {
     const { 
         map,
         log,
@@ -38,12 +37,6 @@ export default function GameScreen() {
 
     useMovement();
     const handleAction = useActions();
-
-    useEffect(() => {
-        if (map && map.grid && map.grid.every(row => row.every(cell => cell === null))) {
-            initializeGame(map, setLog);
-        }
-    }, [map, setLog]); // Ensure it runs only once if the map is empty
 
     return (
         <>
@@ -98,3 +91,5 @@ export default function GameScreen() {
         </>
     );
 }
+
+export default GameScreen;

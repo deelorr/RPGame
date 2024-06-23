@@ -3,18 +3,7 @@ import { useMemo } from 'react';
 import Weapon from '../../classes/items/weapons/Weapon';
 import Armor from '../../classes/items/armor/Armor';
 import './Inventory.css';
-
-const groupInventoryItems = (inventory) => {
-    const itemMap = inventory.reduce((acc, item) => {
-        if (acc[item.name]) {
-            acc[item.name].count += 1;
-        } else {
-            acc[item.name] = { item, count: 1 };
-        }
-        return acc;
-    }, {});
-    return Object.values(itemMap);
-};
+import { groupInventoryItems } from '../GameUtils/GameUtils';
 
 const Inventory = ({ player, inventory, handleAction }) => {
     const groupedInventory = useMemo(() => groupInventoryItems(inventory), [inventory]);

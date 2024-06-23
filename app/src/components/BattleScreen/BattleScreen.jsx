@@ -3,25 +3,13 @@ import PropTypes from 'prop-types';
 import GameContext from '../../contexts/GameContext';
 import useActions from '../GameUtils/useActions';
 import './BattleScreen.css';
+import { handleRun, getHealthBarWidth } from '../GameUtils/GameUtils';
 
 
 const BattleScreen = () => {
-  const { player, enemy, inBattle, setInBattle, setLog } = useContext(GameContext);
+  const { player, enemy, inBattle } = useContext(GameContext);
 
   const handleAction = useActions();
-
-  const updateLog = (message) => {
-    setLog((prevLog) => [...prevLog, message]);
-  };
-
-  const handleRun = () => {
-    updateLog(`${player.name} ran away!`);
-    setInBattle(false);
-  };
-
-  const getHealthBarWidth = (hp, maxHp) => {
-    return `${(hp / maxHp) * 100}%`;
-  };
 
   return (
     <div className="battle-screen">

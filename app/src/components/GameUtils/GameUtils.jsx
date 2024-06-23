@@ -44,3 +44,29 @@ export const addGold = (player, updateLog, setLog) => {
     player.gold += 100;
     updateLog("Added 100 gold.", setLog);
 }
+
+export const switchMap = (setCurrentMapIndex, setPlayerPosition) => (newMapIndex, targetX, targetY) => {
+    setCurrentMapIndex(newMapIndex);
+    setPlayerPosition({ x: targetX, y: targetY }); // Reset player position on new map
+};
+
+export const groupInventoryItems = (inventory) => {
+    const itemMap = inventory.reduce((acc, item) => {
+        if (acc[item.name]) {
+            acc[item.name].count += 1;
+        } else {
+            acc[item.name] = { item, count: 1 };
+        }
+        return acc;
+    }, {});
+    return Object.values(itemMap);
+};
+
+export const handleRun = (player, setInBattle, updateLog, setLog) => {
+    updateLog(`${player.name} ran away!`, setLog);
+    setInBattle(false);
+};
+
+export const getHealthBarWidth = (hp, maxHp) => {
+    return `${(hp / maxHp) * 100}%`;
+};
