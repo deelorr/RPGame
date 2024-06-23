@@ -1,10 +1,9 @@
-import { useContext } from 'react';
-import PropTypes from 'prop-types';
-import GameContext from '../../contexts/GameContext';
-import useActions from '../GameUtils/useActions';
-import './BattleScreen.css';
-import { handleRun, getHealthBarWidth } from '../GameUtils/GameUtils';
-
+import { useContext } from "react";
+import PropTypes from "prop-types";
+import GameContext from "../../contexts/GameContext";
+import useActions from "../GameUtils/useActions";
+import "./BattleScreen.css";
+import { handleRun, getHealthBarWidth } from "../GameUtils/GameUtils";
 
 const BattleScreen = () => {
   const { player, enemy, inBattle } = useContext(GameContext);
@@ -15,7 +14,9 @@ const BattleScreen = () => {
     <div className="battle-screen">
       <div className="playerStats">
         <p>Player: {player.name}</p>
-        <p>HP: {player.hp}/{player.maxHp}</p>
+        <p>
+          HP: {player.hp}/{player.maxHp}
+        </p>
         <div className="health-bar">
           <div
             className="health-bar-fill"
@@ -26,17 +27,30 @@ const BattleScreen = () => {
         <p>Special: {player.special}</p>
         <p>Gold: {player.gold}</p>
         <div className="battleButtons">
-          <button className="runBtn" onClick={handleRun}>Run</button>
-          <button className="attackBtn" onClick={() => handleAction('attack')}>Attack</button>
-          <button className="specialBtn" onClick={() => handleAction('special')}>Special</button>
+          <button className="runBtn" onClick={handleRun}>
+            Run
+          </button>
+          <button className="attackBtn" onClick={() => handleAction("attack")}>
+            Attack
+          </button>
+          <button
+            className="specialBtn"
+            onClick={() => handleAction("special")}
+          >
+            Special
+          </button>
         </div>
       </div>
       {inBattle && enemy ? (
         <>
-          <span><p>VS</p></span>
+          <span>
+            <p>VS</p>
+          </span>
           <div className="enemyStats">
             <p>Enemy: {enemy.name}</p>
-            <p>HP: {enemy.hp}/{enemy.maxHp}</p>
+            <p>
+              HP: {enemy.hp}/{enemy.maxHp}
+            </p>
             <div className="health-bar">
               <div
                 className="health-bar-fill"

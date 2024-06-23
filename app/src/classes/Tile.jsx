@@ -1,40 +1,40 @@
 class Tile {
-    constructor(walkable) {
-        this.walkable = walkable;
-    }
+  constructor(walkable) {
+    this.walkable = walkable;
+  }
 }
 
 class BuildingTile extends Tile {
-    constructor() {
-        super(false); // Buildings are not walkable
-    }
+  constructor() {
+    super(false); // not walkable
+  }
 }
 
 class TreeTile extends Tile {
-    constructor() {
-        super(false); // Trees are not walkable
-    }
+  constructor() {
+    super(false); // not walkable
+  }
 }
 
 class RoadTile extends Tile {
-    constructor() {
-        super(true); // Roads are walkable
-    }
+  constructor() {
+    super(true); // walkable
+  }
 }
 
 class DirtTile extends Tile {
-    constructor() {
-        super(true); // Dirt is walkable
-    }
+  constructor() {
+    super(true); // walkable
+  }
 }
 
 class TransitionTile extends Tile {
-    constructor(targetMapIndex, targetX, targetY) {
-        super(true); // Transition tiles are walkable
-        this.targetMapIndex = targetMapIndex;
-        this.targetX = targetX;
-        this.targetY = targetY;
-    }
+  constructor(targetMapIndex, targetX, targetY) {
+    super(true); // walkable
+    this.targetMapIndex = targetMapIndex;
+    this.targetX = targetX;
+    this.targetY = targetY;
+  }
 }
 
 export { BuildingTile, TreeTile, DirtTile, RoadTile, TransitionTile };

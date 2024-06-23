@@ -1,68 +1,68 @@
-
-
 /* Grid.css */
 .mapContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 5px;
-    margin: 2px;
-    border-radius: 10px;
-    background-color: rgb(226, 212, 194);
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    border: rgba(0, 3, 153, 0.808) 3px outset;
-    text-align: center;
-    height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 5px;
+  margin: 2px;
+  border-radius: 10px;
+  background-color: rgb(226, 212, 194);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border: rgba(0, 3, 153, 0.808) 3px outset;
+  text-align: center;
+  height: 70%;
 }
 
 .mapDiv {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    border-radius: 10px;
-    background-color: #f0f0f0;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    text-align: center;
-    background-image: url('/backdrop.jpg');
-    background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  text-align: center;
+  background-image: url("/backdrop.jpg");
+  background-size: 100% 100%;
 }
 
 table.map {
-    border-collapse: collapse;
-    width: 100%;
-    height: 100%;
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
 }
 
 td {
-    width: 45px;
-    height: 45px;
-    text-align: center;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    border-radius: 10px;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border-radius: 10px;
 }
 
 .player {
-    background-image: url('/Ally.png');
-    background-repeat: no-repeat;
-    background-size: 100% 115%;
+  background-image: url("/Ally.png");
+  background-repeat: no-repeat;
+  background-size: 100% 115%;
 }
 
 .porter {
-    background-image: url('/Porter.png');
-    background-repeat: no-repeat;
-    background-size: 100% 115%;
+  background-image: url("/Porter.png");
+  background-repeat: no-repeat;
+  background-size: 100% 115%;
 }
 
 .matt {
-    background-image: url('/Matt.png');
-    background-repeat: no-repeat;
-    background-size: 100% 115%;
+  background-image: url("/Matt.png");
+  background-repeat: no-repeat;
+  background-size: 100% 115%;
 }
 
 .enemy {
-    background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 0, 0);
 }
-

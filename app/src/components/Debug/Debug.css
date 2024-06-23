@@ -1,59 +1,58 @@
 .debug {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.24);
-    border-radius: 10px;
-    color: white;
-    padding: 10px;
-    margin: 10px;
-    cursor: grab;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  cursor: grab;
 }
 
 .debug button {
-    margin: 2px;
-    padding: 5px;
-    border: none;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.384);
-    color: white;
-    cursor: pointer;
+  margin: 2px;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.384);
+  color: white;
+  cursor: pointer;
 }
 
 .debug button:hover {
-    background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .debug h5 {
-    margin: 2px;
-    padding: 5px;
-    border-radius: 10px;
+  margin: 2px;
+  padding: 5px;
+  border-radius: 10px;
 }
 
-
 .debug:active {
-    cursor: grabbing; 
+  cursor: grabbing;
 }
 
 .debug-title {
-    display: flex;
-    justify-content: center;
-    cursor: grab;
+  display: flex;
+  justify-content: center;
+  cursor: grab;
 }
 
 .debug-title:active {
-    cursor: grabbing; 
+  cursor: grabbing;
 }
 
 .debug-buttons {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .debug-stats {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }

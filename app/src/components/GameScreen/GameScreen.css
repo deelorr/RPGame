@@ -1,45 +1,48 @@
 /* GameScreen.css */
 .gameScreen {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    border-radius: 5px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    background-color: rgb(172, 155, 133);
-    border: rgba(0, 3, 153, 0.808) 3px outset;
-    height: 100vh;
-    width: 100vw;
-    margin: auto;
-    overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: rgb(172, 155, 133);
+  border: rgba(0, 3, 153, 0.808) 3px outset;
+  height: 100vh;
+  width: 100vw;
+  margin: auto;
+  overflow: hidden;
 }
 
 .firstDiv {
-    width: 25%;
+  width: 25%;
 }
 
 .middleDiv {
-    width: 50%;
+  width: 50%;
 }
 
 .thirdDiv {
-    width: 25%;
+  width: 25%;
 }
 
-.firstDiv, .middleDiv, .thirdDiv {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
+.firstDiv,
+.middleDiv,
+.thirdDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
 }
 
 .placeholder {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: rgba(0, 3, 153, 0.808) 3px outset;
-    border-radius: 10px;
-    padding: 5px;
-    margin: 2px;
-    background-color: rgb(226, 212, 194);
-    text-align: center;
-    height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: rgba(0, 3, 153, 0.808) 3px outset;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 2px;
+  background-color: rgb(226, 212, 194);
+  text-align: center;
+  height: 30%;
 }

@@ -1,84 +1,88 @@
-import { useContext } from 'react';
-import GameContext from '../../contexts/GameContext';
-import PropTypes from 'prop-types';
-import Weapon from '../../classes/items/weapons/Weapon';
-import Armor from '../../classes/items/armor/Armor';
-import Item from '../../classes/items/Item';
-import Enemy from '../../classes/characters/enemies/Enemy';
-import Matt from '../../classes/characters/enemies/Matt';
-import NPC from '../../classes/characters/npc/NPC';
-import Porter from '../../classes/characters/npc/Porter';
-import { RoadTile, TransitionTile, BuildingTile, TreeTile, DirtTile } from '../../classes/Tile';
-import './Grid.css';
+import { useContext } from "react";
+import GameContext from "../../contexts/GameContext";
+import PropTypes from "prop-types";
+import Weapon from "../../classes/items/weapons/Weapon";
+import Armor from "../../classes/items/armor/Armor";
+import Item from "../../classes/items/Item";
+import Enemy from "../../classes/characters/enemies/Enemy";
+import Matt from "../../classes/characters/enemies/Matt";
+import NPC from "../../classes/characters/npc/NPC";
+import Porter from "../../classes/characters/npc/Porter";
+import {
+  RoadTile,
+  TransitionTile,
+  BuildingTile,
+  TreeTile,
+  DirtTile,
+} from "../../classes/Tile";
+import "./Grid.css";
 
 const Grid = ({ map }) => {
-    const { playerPosition } = useContext(GameContext);
+  const { playerPosition } = useContext(GameContext);
 
-    if (!map) {
-        return <div>Loading...</div>;
+  if (!map) {
+    return <div>Loading...</div>;
+  }
+
+  const getClassForCell = (x, y) => {
+    if (x === playerPosition.x && y === playerPosition.y) return "player";
+    const item = map.grid[y][x];
+    if (item instanceof Weapon) return "weapon";
+    if (item instanceof Armor) return "armor";
+    if (item instanceof Item) return "item";
+    if (item instanceof Matt) return "matt";
+    if (item instanceof Porter) return "porter";
+    if (item instanceof Enemy) return "enemy";
+    if (item instanceof NPC) return "npc";
+    if (item instanceof TransitionTile) return "transitionTile";
+    if (item instanceof RoadTile) return "road";
+    if (item instanceof BuildingTile) return "building";
+    if (item instanceof TreeTile) return "tree";
+    if (item === "store") return "store";
+    if (item instanceof DirtTile) return "plainTile";
+    if (typeof item === "string") return item;
+  };
+
+  const renderGrid = () => {
+    const rows = [];
+    for (let y = 0; y < map.height; y++) {
+      const cells = [];
+      for (let x = 0; x < map.width; x++) {
+        const cellClass = getClassForCell(x, y);
+        cells.push(<td key={`${x},${y}`} className={cellClass}></td>);
+      }
+      rows.push(<tr key={y}>{cells}</tr>);
     }
+    return rows;
+  };
 
-    const getClassForCell = (x, y) => {
-        if (x === playerPosition.x && y === playerPosition.y) return 'player';
-        const item = map.grid[y][x];
-        if (item instanceof Weapon) return 'weapon';
-        if (item instanceof Armor) return 'armor';
-        if (item instanceof Item) return 'item';
-        if (item instanceof Matt) return 'matt';
-        if (item instanceof Porter) return 'porter';
-        if (item instanceof Enemy) return 'enemy';
-        if (item instanceof NPC) return 'npc';
-        if (item instanceof TransitionTile) return 'transitionTile';
-        if (item instanceof RoadTile) return 'road';
-        if (item instanceof BuildingTile) return 'building';
-        if (item instanceof TreeTile) return 'tree';
-        if (item === 'store') return 'store';
-        if (item instanceof DirtTile) return 'plainTile';
-        if (typeof item === 'string') return item;
-    };
-
-    const renderGrid = () => {
-        const rows = [];
-        for (let y = 0; y < map.height; y++) {
-            const cells = [];
-            for (let x = 0; x < map.width; x++) {
-                const cellClass = getClassForCell(x, y);
-                cells.push(<td key={`${x},${y}`} className={cellClass}></td>);
-            }
-            rows.push(<tr key={y}>{cells}</tr>);
-        }
-        return rows;
-    };
-
-    return (
-        <div className='mapContainer'>
-            <h2>Map</h2>
-            <div className='mapDiv'>
-                <table className='map'>
-                    <tbody>
-                    {renderGrid()}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
+  return (
+    <div className="mapContainer">
+      <h2>Map</h2>
+      <div className="mapDiv">
+        <table className="map">
+          <tbody>{renderGrid()}</tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 Grid.propTypes = {
-    map: PropTypes.shape({
-        width: PropTypes.number.isRequired,
-        height: PropTypes.number.isRequired,
-        grid: PropTypes.arrayOf(PropTypes.array).isRequired,
-        getItem: PropTypes.func.isRequired,
-        isValidPosition: PropTypes.func.isRequired,
-        removeItem: PropTypes.func.isRequired,
-        findItemPosition: PropTypes.func.isRequired,
-    }).isRequired,
-    playerPosition: PropTypes.shape({
-        x: PropTypes.number.isRequired,
-        y: PropTypes.number.isRequired,
-    }).isRequired,
-    playerAnimation: PropTypes.string,
+  map: PropTypes.shape({
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    grid: PropTypes.arrayOf(PropTypes.array).isRequired,
+    getItem: PropTypes.func.isRequired,
+    isValidPosition: PropTypes.func.isRequired,
+    removeItem: PropTypes.func.isRequired,
+    findItemPosition: PropTypes.func.isRequired,
+  }).isRequired,
+  playerPosition: PropTypes.shape({
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
+  }).isRequired,
+  playerAnimation: PropTypes.string,
 };
 
 export default Grid;
